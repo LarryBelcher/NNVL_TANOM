@@ -43,12 +43,12 @@ if __name__ == '__main__':
 	if(len(result) != 0):
 		url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly_Calculated_vs_1981_to_2010_Average/"+filename
 		urllib.urlretrieve(url, "tmp.png")
-		cmd = "mv tmp.png ../Images/Monthly/Orig/"+filename
+		cmd = "mv tmp.png ./Images/Monthly/Orig/"+filename
 		subprocess.call(cmd,shell=True)	
 		isz = ['620', '1000', 'DIY', 'HD', 'HDSD']
 		for i in xrange(len(isz)):
-			cmd = 'python ghcn_monthly_driver.py '+stryyyy+strmm+' '+isz[i]
+			cmd = 'tanom_monthly_driver.py '+stryyyy+strmm+' '+isz[i]
 			subprocess.call(cmd, shell=True)
-		cmd = "./UploadDsImages.csh"
+		cmd = "UploadNNVLImages.csh"
 		subprocess.call(cmd, shell=True)
 		
