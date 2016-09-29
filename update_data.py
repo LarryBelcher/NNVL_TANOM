@@ -16,14 +16,14 @@ for i in range(12):
 		#url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly/"+fname
 		url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly_Calculated_vs_1981_to_2010_Average/"+fname
 		urllib.urlretrieve(url, "tmp.png")
-		cmd = "mv tmp.png ../Images/Monthly/Orig/"+fname
+		cmd = "mv tmp.png ./Images/Monthly/Orig/"+fname
 		subprocess.call(cmd,shell=True)
 	if(yyyy != this_yyyy):
 		fname = "ANOM.monthly."+yyyy+monstr[i]+".color.png"
 		#url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly/"+fname
 		url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly_Calculated_vs_1981_to_2010_Average/"+fname
 		urllib.urlretrieve(url, "tmp.png")
-		cmd = "mv tmp.png ../Images/Monthly/Orig/"+fname
+		cmd = "mv tmp.png ./Images/Monthly/Orig/"+fname
 		subprocess.call(cmd,shell=True)
 		
 
@@ -32,5 +32,5 @@ if (yyyy != this_yyyy):
 	fname = "ANOM.yearly."+yyyy+".color.png"
 	url = "ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Yearly/"+fname
 	urllib.urlretrieve(url, "tmp.png")
-	cmd = "mv tmp.png ../Images/Yearly/Orig/"+fname
+	cmd = "mv tmp.png ./Images/Yearly/Orig/"+fname
 	subprocess.call(cmd,shell=True)
