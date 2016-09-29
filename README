@@ -1,0 +1,99 @@
+﻿README for NNVL Global Temperature Anomaly image re-projection
+
+Abstract:
+Six python scripts are contained in this project that re-project NNVL
+Global Temperature Anomaly data onto a map (Hammer-Aitoff, equidistant cylindrical, 
+or Robinson). The source images currently reside at:
+
+Monthly Average Temperature Anom: ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Monthly/
+Annual Average Temperature Anom: ftp://ftp.nnvl.noaa.gov/View/ANOM/Images/Color/Yearly/
+
+
+
+Python script listing:
+
+tanom_monthly_driver.py - Driver routine for monthly temperature anomaly images
+
+tanom_monthly_map.py – Map routine for monthly temperature anomaly images
+
+tanom_monthly_colorbar.py – Color bar routine for monthly temperature anomaly images
+
+tanom_yearly_driver.py - Driver routine for yearly temperature anomaly images
+
+tanom_yearly_map.py – Map routine for yearly temperature anomaly images
+
+tanom_yearly_colorbar.py – Color bar routine for yearly temperature anomaly images
+
+
+Additional scripts in this project:
+image_meta.py - A script to create metadata for the image stack
+update_images.py – A simple script to update (or also grab) the monthly and yearly 
+temperature anomaly source images
+
+
+
+Program Usage:
+
+Image production begins by executing tanom_monthly_driver.py (tanom_yearly_driver.py), which
+will create a monthly (yearly) image of a desired size. The possible image sizes 
+(in pixel width) include 620px, 1000px, 4096px (DIY), 1920px (HD, or HDSD). An example 
+call to the monthly driver routine:
+
+“path to python”  tanom_monthly_driver.py “YYYYMM” “image size”
+
+e.g., 
+/usr/bin/python  tanom_monthly_driver.py 201401 620 
+
+The above call would produce an image of reprojected global monthly temperature anomaly 
+data from NOAA View (http://www.nnvl.noaa.gov/view/).
+
+Or an example call to the yearly driver routine routine:
+
+“path to python”  tanom_yearly_driver.py “YYYY” “image size”
+
+e.g., 
+/usr/bin/python  tanom_yearly_driver.py 2013  620
+
+The above call would produce an image of reprojected global annual temperature anomaly 
+data from NOAA View (http://www.nnvl.noaa.gov/view/).
+
+Valid “image size” values are:
+620 (620px wide image)
+1000 (1000px wide image)
+DIY (4096px wide image)
+HD (1920px wide image in high definition)
+HDSD (1920px wide image suitable for either high definition or standard definition
+
+Valid dates range from 188001 - present for monthly images (up to the previous month*)
+	*release date tends to be mid to late month (18th of month) for monthly data
+Or, 1880 through present (up to the previous year*)
+	*release date tends to be in February
+
+
+
+Software and Dependencies:
+
+The scripts included here were built for Python 2.7. The following
+modules must exist on the system for them to perform correctly:
+
+matplotlib-1.1.1 (or higher)
+PIL (python imaging library, 1.1.7 or higher, PIL is the Python Imaging Library)
+mpl_toolkits.basemap
+numpy
+urllib
+shapefile
+sys
+os
+subprocess
+time
+matplotlib.font_manager (in order to utilize the true type font MS Trebuchet, which is not
+	included as a "base" font in python*)
+	*The usage of PIL and the font manager inside matplotlib in these scripts requires
+	the ability to utilize true type fonts. As such for example on a linux box, one would
+	need to have installed the freetype-dev packages. Specifically, libfreetype6-dev needs
+	to be installed on ubuntu... 
+
+Other files in this project:
+colorbar and logo (.png and .eps) files included here are sized for each of the image 
+sizes and are used by the various python scripts that produce the reprojected images
+
